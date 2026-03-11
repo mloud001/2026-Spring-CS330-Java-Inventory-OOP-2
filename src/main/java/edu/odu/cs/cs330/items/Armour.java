@@ -43,6 +43,13 @@ public class Armour extends Equippable {
     public Armour(Armour src)
     {
         // Complete this function.
+        super(src.getName());
+        this.defense = src.defense;
+        this.durability = src.durability;
+        this.element = src.element;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
     }
 
     /**
@@ -80,6 +87,12 @@ public class Armour extends Equippable {
         super.name    = snr.next();
 
         // Complete this function.
+        super.material = snr.next();
+        super.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        super.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
+        super.element = snr.next();    
     }
 
     /**
@@ -89,6 +102,14 @@ public class Armour extends Equippable {
     public Item clone()
     {
         Armour cpy = new Armour();
+
+        cpy.setName(this.name);
+        cpy.setMaterial(this.material);
+        cpy.setDurability(this.durability);
+        cpy.setDefense(this.defense);
+        cpy.setModifier(this.modifier);
+        cpy.setModifierLevel(this.modifierLevel);
+        cpy.setElement(this.element);
 
         // Complete this function.
 
@@ -112,7 +133,10 @@ public class Armour extends Equippable {
 
         // Complete this function.
         // Remove the placeholder return
-        return false;
+        return super.getName().equals(rhsItem.name) 
+        && this.getMaterial().equals(rhsItem.material) 
+        && this.getModifier().equals(rhsItem.modifier)
+        && this.getElement().equals(rhsItem.element);
     }
 
     /**
@@ -124,7 +148,10 @@ public class Armour extends Equippable {
     {
         // Complete this function.
         // Remove the placeholder return
-        return -1;
+        return this.name.hashCode()
+        + this.material.hashCode()
+        + this.modifier.hashCode()
+        + this.element.hashCode();
     }
 
     /**
@@ -138,6 +165,11 @@ public class Armour extends Equippable {
         return String.join(
             System.lineSeparator(),
             String.format("  Nme: %s", super.getName()),
+            String.format("  Dur: %s", this.durability),
+            String.format("  Def: %s", this.defense),
+            String.format("  Mtl: %s", this.material),
+            String.format("  Mdr: %s (Lvl %s)", this.modifier, this.modifierLevel),
+            String.format("  Emt: %s", this.element),
             ""
         );
     }

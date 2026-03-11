@@ -49,6 +49,11 @@ public class Tool extends Equippable {
         this.setName(src.name);
 
         // Complete this function
+        this.setMaterial(src.material);
+        this.setDurability(src.durability);
+        this.setSpeed(src.speed);
+        this.setModifier(src.modifier);
+        this.setModifierLevel(src.modifierLevel);
 
     }
 
@@ -84,10 +89,16 @@ public class Tool extends Equippable {
     @Override
     public void read(Scanner snr)
     {
-        super.name    = snr.next();
-        material      = snr.next();
+        super.name = snr.next();
+        super.material = snr.next();
 
         // Complete this function
+        //Tool Axe Stone 10 2 Unbreaking 2
+        super.durability = snr.nextInt();
+        this.speed = snr.nextInt();
+        super.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
+        
     }
 
     /**
@@ -99,6 +110,11 @@ public class Tool extends Equippable {
         Tool cpy = new Tool();
 
         cpy.setName(this.name);
+        cpy.setMaterial(this.material);
+        cpy.setDurability(this.durability);
+        cpy.setSpeed(this.speed);
+        cpy.setModifier(this.modifier);
+        cpy.setModifierLevel(this.modifierLevel);
 
         // Complete this function
 
@@ -120,7 +136,9 @@ public class Tool extends Equippable {
         Tool rhsItem = (Tool) rhs;
 
         // Complete this function
-        return false;
+        return super.getName().equals(rhsItem.name)
+        && this.getMaterial().equals(rhsItem.material)
+        && this.getModifier().equals(rhsItem.modifier);
     }
 
     /**
@@ -131,7 +149,9 @@ public class Tool extends Equippable {
     public int hashCode()
     {
         // Complete this function
-        return -1;
+        return this.name.hashCode()
+        + this.material.hashCode()
+        + this.modifier.hashCode();
     }
 
     /**
